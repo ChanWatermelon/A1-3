@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="몰입 설계소 아이콘">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4c3bcf"/>
+      <stop offset="100%" stop-color="#f2704a"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#g)"/>
+  <!-- 집중 블록 3개를 쌓은 형태 -->
+  <rect x="16" y="17" width="32" height="8" rx="4" fill="#ffffff" opacity="0.95"/>
+  <rect x="16" y="30" width="22" height="8" rx="4" fill="#ffffff" opacity="0.75"/>
+  <rect x="16" y="43" width="28" height="8" rx="4" fill="#ffffff" opacity="0.55"/>
+</svg>

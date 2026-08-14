@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="몰입 설계소 소개 이미지">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7f7fb"/>
+      <stop offset="100%" stop-color="#ece9ff"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4c3bcf"/>
+      <stop offset="100%" stop-color="#f2704a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1050" cy="90" r="180" fill="#ffeee8" opacity="0.7"/>
+
+  <rect x="90" y="96" width="56" height="56" rx="16" fill="url(#mark)"/>
+  <text x="166" y="138" font-family="Segoe UI, Malgun Gothic, sans-serif" font-size="34" font-weight="700" fill="#1c1b25">몰입 설계소</text>
+
+  <text x="90" y="262" font-family="Segoe UI, Malgun Gothic, sans-serif" font-size="62" font-weight="800" fill="#1c1b25">남은 시간을</text>
+  <text x="90" y="342" font-family="Segoe UI, Malgun Gothic, sans-serif" font-size="62" font-weight="800" fill="#4c3bcf">집중 블록으로 바꿉니다</text>
+
+  <text x="90" y="412" font-family="Segoe UI, Malgun Gothic, sans-serif" font-size="27" fill="#5a5870">할 일 · 남은 시간 · 컨디션을 입력하면 AI가 오늘의 타임테이블을 설계합니다</text>
+
+  <g transform="translate(90,470)">
+    <rect width="300" height="58" rx="16" fill="#ffffff" stroke="#e3e3ee"/>
+    <rect x="18" y="21" width="16" height="16" rx="5" fill="#4c3bcf"/>
+    <text x="48" y="37" font-family="Segoe UI, Malgun Gothic, sans-serif" font-size="20" fill="#1c1b25">14:00  서론 초안 쓰기</text>
+
+    <rect x="320" width="300" height="58" rx="16" fill="#ffffff" stroke="#e3e3ee"/>
+    <rect x="338" y="21" width="16" height="16" rx="5" fill="#1f8a5f"/>
+    <text x="368" y="37" font-family="Segoe UI, Malgun Gothic, sans-serif" font-size="20" fill="#1c1b25">14:50  회복 블록</text>
+
+    <rect x="640" width="300" height="58" rx="16" fill="#ffffff" stroke="#e3e3ee"/>
+    <rect x="658" y="21" width="16" height="16" rx="5" fill="#4c3bcf"/>
+    <text x="688" y="37" font-family="Segoe UI, Malgun Gothic, sans-serif" font-size="20" fill="#1c1b25">15:00  데이터 정리</text>
+  </g>
+</svg>
