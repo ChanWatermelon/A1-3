@@ -1,0 +1,22 @@
+# 환경 변수 (실제 API 키가 들어가는 파일 - 절대 커밋 금지)
+.env
+.env.local
+.env.*.local
+
+# Vercel
+.vercel/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / 편집기
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# 로그
+*.log
