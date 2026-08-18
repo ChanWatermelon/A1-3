@@ -5,8 +5,8 @@
 할 일 목록은 있는데 "뭐부터 하지"로 시간을 흘려보내는 대학원생·연구원·지식노동자를 위해 만들었습니다.
 몰입 설계소는 **무엇부터 할지 / 어디까지 하면 끝인지 / 언제 쉴지**를 대신 정해 시간표로 그려 줍니다.
 
-**배포 URL:** `https://__배포후_여기에_URL을_적어주세요__.vercel.app`
-**GitHub:** `https://github.com/__계정__/__저장소명__`
+**배포 URL:** <https://a1-3-gamma.vercel.app>
+**GitHub:** <https://github.com/ChanWatermelon/A1-3>
 
 ---
 
@@ -122,8 +122,8 @@ Python 3.10 이상이 필요합니다.
 
 ```bash
 # 1) 저장소 받기
-git clone https://github.com/__계정__/__저장소명__.git
-cd __저장소명__
+git clone https://github.com/ChanWatermelon/A1-3.git
+cd A1-3
 
 # 2) (권장) 가상환경
 python -m venv .venv
@@ -248,7 +248,7 @@ git init
 git add .
 git commit -m "feat: 몰입 설계소 초기 구현"
 git branch -M main
-git remote add origin https://github.com/__계정__/__저장소명__.git
+git remote add origin https://github.com/ChanWatermelon/A1-3.git
 git push -u origin main
 ```
 
