@@ -188,11 +188,6 @@ python dev_server.py            # → http://localhost:3000
 | --- | --- | --- | --- |
 | `OPENAI_API_KEY` | 둘 중 **1개 필수** | OpenAI API 키 | <https://platform.openai.com/api-keys> |
 | `GEMINI_API_KEY` | 둘 중 **1개 필수** | Google Gemini API 키 | <https://aistudio.google.com/apikey> |
-| `OPENAI_MODEL` | 선택 | 기본값 `gpt-4o-mini` | — |
-| `GEMINI_MODEL` | 선택 | 기본값 `gemini-2.5-flash` | — |
-| `CONTACT_WEBHOOK_URL` | 선택 | 문의 내용을 보낼 Slack/Make/Zapier 웹훅 주소 | — |
-
-둘 다 설정하면 **OpenAI가 우선** 사용됩니다.
 
 ### 방법 A. 로컬 — `.env` 파일
 
@@ -256,26 +251,6 @@ git push -u origin main
 3. 설정은 **그대로 두고** (Framework Preset: `Other`, Build Command 비움, Output Directory 비움)
 4. **Environment Variables** 에 `OPENAI_API_KEY` 추가 → **Deploy**
 5. 배포가 끝나면 `https://<프로젝트명>.vercel.app` 접속
-
-### 배포 후 확인 체크리스트
-
-- [ ] `/api/health` 에서 `"ai_configured": true` 인가?
-- [ ] 5개 메뉴가 모두 해당 섹션으로 이동하는가?
-- [ ] 개발자 도구의 모바일 모드(375px)에서 레이아웃이 깨지지 않는가?
-- [ ] 빈 입력으로 제출했을 때 안내 문구가 뜨는가?
-- [ ] 정상 입력 시 타임테이블이 표시되는가?
-- [ ] 다크 모드 전환 후 새로고침해도 유지되는가?
-
-### 수정 후 재배포
-
-`main` 브랜치에 푸시하면 Vercel이 자동으로 다시 배포합니다.
-
-```bash
-git add .
-git commit -m "fix: 모바일에서 결과 카드 여백 조정"
-git push
-```
-
 ---
 
 ## 9. AI 기능 설계
@@ -440,9 +415,3 @@ LLM이 시각 덧셈을 틀리는 문제를 원천적으로 없애고, **총 시
 | 다크 모드가 안 바뀜 | localStorage 차단(시크릿 모드 등) | 현재 세션에는 적용되며 새로고침 시 초기화됨 |
 
 ---
-
-## 13. 라이선스 / 안내
-
-- 학습 목적의 개인 프로젝트입니다.
-- AI가 생성한 일정 제안이며, 실제 건강·업무 상황에 맞게 조정해 사용해야 합니다.
-- AI API 호출에는 **과금이 발생**합니다. 배포 URL을 공개할 때는 사용량 한도를 함께 설정하는 것을 권장합니다.
