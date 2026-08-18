@@ -91,7 +91,8 @@ a1-3/
 ├── api/                    # ← Vercel Serverless Functions (Python)
 │   ├── routine.py          #   POST /api/routine  : AI 루틴 설계
 │   ├── contact.py          #   POST /api/contact  : 문의 접수 (+웹훅 연동)
-│   └── health.py           #   GET  /api/health   : 배포/환경 변수 점검
+│   ├── health.py           #   GET  /api/health   : 배포/환경 변수 점검
+│   └── requirements.txt    #   함수가 사용하는 패키지 (requests)
 ├── images/
 │   ├── favicon.svg
 │   └── og-image.svg
@@ -101,8 +102,8 @@ a1-3/
 │   ├── AI-코딩도구-사용기록.md
 │   └── 증빙자료-가이드.md
 ├── dev_server.py           # 로컬 개발 서버 (배포에는 사용되지 않음)
-├── requirements.txt        # requests
 ├── vercel.json             # 보안 헤더 설정 (함수는 Vercel이 자동 인식)
+├── .vercelignore           # 배포본에서 제외할 파일 (dev_server.py, docs/ 등)
 ├── .env.example            # 환경 변수 이름 템플릿 (값 없음)
 ├── .gitignore              # .env 등 민감 파일 제외
 └── README.md
@@ -130,7 +131,7 @@ python -m venv .venv
 source .venv/bin/activate       # macOS / Linux
 
 # 3) 패키지 설치
-pip install -r requirements.txt
+pip install -r api/requirements.txt
 
 # 4) 환경 변수 파일 만들기 (아래 7번 참고)
 copy .env.example .env          # Windows
@@ -430,8 +431,9 @@ LLM이 시각 덧셈을 틀리는 문제를 원천적으로 없애고, **총 시
 | --- | --- | --- |
 | 배포 후 AI 기능만 실패 | 환경 변수 미설정 또는 재배포 안 함 | Vercel에 변수 추가 후 **Redeploy** |
 | `/api/health` 가 404 | `api/` 폴더 위치가 루트가 아님 | 저장소 최상위에 `api/` 가 있어야 함 |
-| `ModuleNotFoundError: requests` | `requirements.txt` 누락 | 루트에 `requirements.txt` 가 있는지 확인 |
-| 빌드가 2초 만에 실패 (코드 실행 전) | `vercel.json` 설정 검증 실패 | 요금제가 허용하지 않는 `functions.maxDuration` / `functions.memory` 를 지정하면 발생. **`functions` 블록은 없어도 되므로 삭제**하면 해결됨 (Vercel이 `api/*.py` 를 자동 인식) |
+| `ModuleNotFoundError: requests` | `requirements.txt` 위치 문제 | `api/requirements.txt` 가 있는지 확인 (함수와 같은 폴더) |
+| 빌드 실패 — `No python entrypoint found in default locations` | Vercel이 저장소를 **"파이썬 앱 하나"로 오인**함 | **최상위 폴더에서 `requirements.txt` 를 없애고 `api/` 로 옮긴다.** 최상위의 `.py`·`requirements.txt` 는 "이 저장소는 파이썬 앱"이라는 신호가 되어, `api/` 파일들을 개별 함수로 만들지 않게 한다. 개발용 `dev_server.py` 는 `.vercelignore` 로 제외 |
+| 빌드 실패 — `maxDuration` / `memory` 관련 | 요금제가 허용하지 않는 값 지정 | `vercel.json` 의 `functions` 블록은 필수가 아니므로 삭제 (Vercel이 `api/*.py` 를 자동 인식) |
 | 로컬에서 `python` 이 실행 안 됨 (Windows) | Microsoft Store 스텁 | `py dev_server.py` 로 실행 |
 | 응답이 계속 25초 후 끊김 | 모델 응답 지연 | 더 빠른 모델(`gpt-4o-mini`)로 `OPENAI_MODEL` 지정 |
 | 결과 시간이 이상함 | — | 시각은 서버가 계산하므로, `시작 시각` 입력값을 확인 |

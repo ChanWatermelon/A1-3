@@ -1,0 +1,20 @@
+# Vercel 배포 시 업로드하지 않을 파일
+#
+# 배포에 필요한 것은 index.html / css / js / images / api 뿐이다.
+# 특히 최상위 폴더에 파이썬 파일이나 requirements.txt 가 있으면
+# Vercel 이 이 저장소를 "파이썬 앱 하나"로 오인해
+# api/ 의 함수들을 개별 엔드포인트로 만들지 않는다.
+
+# 로컬 개발 전용 서버 (배포에는 사용되지 않음)
+dev_server.py
+
+# 문서 (GitHub 에는 남고 배포본에서만 제외)
+docs/
+
+# 파이썬 캐시
+__pycache__/
+*.py[cod]
+
+# 환경 변수 (혹시 모를 실수 방지 — 배포 환경 변수는 Vercel 설정에서 주입됨)
+.env
+.env.*

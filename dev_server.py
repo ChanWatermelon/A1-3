@@ -69,7 +69,7 @@ def load_api_modules() -> dict:
             spec.loader.exec_module(module)
         except Exception as error:  # 의존 패키지 누락 등
             print(f"[오류] api/{path.name} 을 불러오지 못했습니다: {error}")
-            print("       pip install -r requirements.txt 를 실행했는지 확인하세요.")
+            print("       pip install -r api/requirements.txt 를 실행했는지 확인하세요.")
             continue
         modules["/api/" + path.stem] = module
         print(f"  · /api/{path.stem}  ←  api/{path.name}")
