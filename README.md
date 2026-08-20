@@ -47,7 +47,7 @@
 | 프론트엔드 | HTML5, CSS3, Vanilla JavaScript (ES6+) | 프레임워크·빌드 도구 없음 |
 | 백엔드 | Vercel Serverless Functions (**Python 3.12**) | `api/` 폴더의 파일이 곧 엔드포인트 |
 | HTTP 클라이언트 | `requests` | `requirements.txt` 에 정의 |
-| AI API | OpenAI Chat Completions **또는** Google Gemini | 설정된 키를 자동 감지 |
+| AI API | Google Gemini | 설정된 키를 자동 감지 |
 | 배포 | Vercel (GitHub 연동 자동 배포) | `vercel.json` 으로 함수 옵션 지정 |
 | 그 외 | localStorage(다크 모드·최근 기록), IntersectionObserver(스크롤 효과) | 외부 라이브러리 0개 |
 
@@ -106,13 +106,6 @@ a1-3/
 ├── .env.example            # 환경 변수 이름 템플릿 (값 없음)
 ├── .gitignore              # .env 등 민감 파일 제외
 └── README.md
-```
-
-**프론트와 백엔드의 경계**
-
-- 프론트(`index.html`, `css/`, `js/`)는 **API 키를 전혀 알지 못합니다.** `/api/...` 주소만 압니다.
-- 백엔드(`api/`)만 환경 변수에서 키를 읽어 외부 AI API를 호출합니다.
-
 ---
 
 ## 6. 로컬 실행 방법
@@ -159,21 +152,6 @@ python dev_server.py            # → http://localhost:3000
 > 개발 전용 서버를 만들었습니다. **배포에는 전혀 사용되지 않습니다.**
 > (Vercel CLI가 있다면 `vercel dev` 로 실제 배포 환경과 동일하게 실행할 수도 있습니다.)
 
-### 환경 변수가 잘 들어갔는지 확인
-
-브라우저에서 <http://localhost:3000/api/health> 를 열면 다음과 같이 표시됩니다.
-
-```json
-{
-  "ok": true,
-  "ai_configured": true,
-  "provider": "openai",
-  "webhook_configured": false
-}
-```
-
-`ai_configured` 가 `false` 면 키가 읽히지 않은 것입니다. **키 값 자체는 절대 출력되지 않습니다.**
-
 ---
 
 ## 7. 환경 변수 설정 
@@ -183,9 +161,9 @@ python dev_server.py            # → http://localhost:3000
 
 ### 필요한 키
 
-| 이름 | 필수 여부 | 설명 | 발급처 |
+| 이름 | 설명 | 발급처 |
 | --- | --- | --- | --- |
-| `GEMINI_API_KEY` | 둘 중 **1개 필수** | Google Gemini API 키 | <https://aistudio.google.com/apikey> |
+| `GEMINI_API_KEY` | Google Gemini API 키 | <https://aistudio.google.com/apikey> |
 
 ### 방법 A. 로컬 — `.env` 파일
 
