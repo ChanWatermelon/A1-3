@@ -186,7 +186,6 @@ python dev_server.py            # → http://localhost:3000
 
 | 이름 | 필수 여부 | 설명 | 발급처 |
 | --- | --- | --- | --- |
-| `OPENAI_API_KEY` | 둘 중 **1개 필수** | OpenAI API 키 | <https://platform.openai.com/api-keys> |
 | `GEMINI_API_KEY` | 둘 중 **1개 필수** | Google Gemini API 키 | <https://aistudio.google.com/apikey> |
 
 ### 방법 A. 로컬 — `.env` 파일
