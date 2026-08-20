@@ -159,12 +159,6 @@ python dev_server.py            # → http://localhost:3000
 > **이 저장소의 어떤 파일에도 실제 API 키 값은 들어 있지 않습니다.**
 > 키는 코드가 아니라 환경 변수로만 전달합니다.
 
-### 필요한 키
-
-| 이름 | 설명 | 발급처 |
-| --- | --- | --- | --- |
-| `GEMINI_API_KEY` | Google Gemini API 키 | <https://aistudio.google.com/apikey> |
-
 ### 방법 A. 로컬 — `.env` 파일
 
 ```bash
