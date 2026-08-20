@@ -176,7 +176,7 @@ python dev_server.py            # → http://localhost:3000
 
 ---
 
-## 7. 환경 변수 설정 (중요)
+## 7. 환경 변수 설정 
 
 > **이 저장소의 어떤 파일에도 실제 API 키 값은 들어 있지 않습니다.**
 > 키는 코드가 아니라 환경 변수로만 전달합니다.
@@ -201,35 +201,6 @@ OPENAI_API_KEY=여기에_본인_키
 ```
 
 `.env` 는 `.gitignore` 에 등록되어 있어 **커밋되지 않습니다.**
-
-### 방법 B. 배포 — Vercel 환경 변수
-
-1. Vercel 프로젝트 → **Settings → Environment Variables**
-2. `Key` 에 `OPENAI_API_KEY`, `Value` 에 키 값을 입력
-3. 적용 환경으로 **Production / Preview / Development** 를 모두 체크
-4. **Save** 후 **Deployments → 최신 배포 → Redeploy**
-   (환경 변수는 빌드 시점에 주입되므로 저장만으로는 반영되지 않습니다.)
-
-### 왜 환경 변수로 관리하나요?
-
-1. **유출 방지** — 코드에 적으면 GitHub 공개 순간 키가 노출되고, 봇이 수 분 내에 긁어 갑니다.
-2. **교체 용이** — 키를 바꿔도 코드를 수정할 필요가 없습니다.
-3. **환경 분리** — 개발용/운영용 키를 다르게 쓸 수 있습니다.
-4. **과금 보호** — 유출된 키는 그대로 요금 청구로 이어집니다.
-
-### 키가 유출된 것 같다면
-
-1. 해당 콘솔(OpenAI/Google)에서 즉시 **키 폐기(revoke) 후 재발급**
-2. Vercel 환경 변수를 새 키로 교체하고 재배포
-3. 커밋 이력에 남았다면 히스토리 정리
-   ```bash
-   # 파일을 추적에서 제외
-   git rm --cached .env
-   git commit -m "chore: .env 추적 제외"
-   # 이미 푸시된 이력에서 지워야 한다면 (주의: 히스토리가 바뀝니다)
-   git filter-branch --index-filter "git rm --cached --ignore-unmatch .env" HEAD
-   ```
-   **단, 이미 공개된 키는 삭제해도 안전하지 않습니다. 반드시 재발급하세요.**
 
 ---
 
