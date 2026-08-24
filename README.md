@@ -17,7 +17,7 @@
 3. [화면 구성](#4-화면-구성)
 4. [프로젝트 구조](#5-프로젝트-구조)
 5. [로컬 실행 방법](#6-로컬-실행-방법)
-6. [환경 변수 설정](#7-환경-변수-설정-중요)
+6. [환경 변수 설정](#7-환경-변수-설정)
 7. [Vercel 배포 방법](#8-vercel-배포-방법)
 8. [AI 기능 설계](#9-ai-기능-설계)
 9. [오류 처리 정책](#10-오류-처리-정책)
@@ -54,6 +54,8 @@
 ## 4. 화면 구성
 
 한 페이지 안에서 상단 메뉴로 이동하는 **5개 섹션** 구조입니다.
+(모바일에서는 햄버거 버튼으로 열리는 메뉴로 바뀝니다.)
+
 | # | 섹션 | 앵커 | 내용 |
 | --- | --- | --- | --- |
 | 1 | 홈 | `#home` | 서비스 한 줄 가치 제안, CTA 버튼, 결과 미리보기 카드 |
@@ -89,12 +91,15 @@ a1-3/
 │   └── health.py           #   GET  /api/health   : 배포/환경 변수 점검
 ├── images/
 │   ├── favicon.svg
-│   └── og-image.svg
+│   ├── og-image.svg
+│   ├── 웹화면.png            # 증빙: 데스크톱 화면
+│   ├── 모바일화면.png         # 증빙: 모바일 화면
+│   ├── ai기능동작화면.png     # 증빙: AI 기능 동작 화면
+│   └── 다크모드.png           # 증빙: 다크 모드
 ├── docs/
 │   ├── 서비스기획서.md
 │   ├── 테스트-시나리오.md
-│   ├── AI-코딩도구-사용기록.md
-│   └── 증빙자료-가이드.md
+│   └── AI-코딩도구-사용기록.md
 ├── dev_server.py           # 로컬 개발 서버 (배포에는 사용되지 않음)
 ├── requirements.txt        # requests
 ├── vercel.json             # 보안 헤더 설정 (함수는 Vercel이 자동 인식)
@@ -102,6 +107,8 @@ a1-3/
 ├── .env.example            # 환경 변수 이름 템플릿 (값 없음)
 ├── .gitignore              # .env 등 민감 파일 제외
 └── README.md
+```
+
 ---
 
 ## 6. 로컬 실행 방법
@@ -150,7 +157,7 @@ python dev_server.py            # → http://localhost:3000
 
 ---
 
-## 7. 환경 변수 설정 
+## 7. 환경 변수 설정
 
 > **이 저장소의 어떤 파일에도 실제 API 키 값은 들어 있지 않습니다.**
 > 키는 코드가 아니라 환경 변수로만 전달합니다.
@@ -165,8 +172,11 @@ cp   .env.example .env      # macOS / Linux
 `.env` 를 열어 값을 채웁니다.
 
 ```dotenv
-OPENAI_API_KEY=여기에_본인_키
+GEMINI_API_KEY=여기에_본인_키
 ```
+
+> 키 발급: <https://aistudio.google.com/apikey>
+> (OpenAI 키를 쓰고 싶다면 `OPENAI_API_KEY` 에 넣으면 됩니다. 둘 중 설정된 쪽을 서버가 자동으로 사용합니다.)
 
 `.env` 는 `.gitignore` 에 등록되어 있어 **커밋되지 않습니다.**
 
@@ -186,8 +196,12 @@ git push -u origin main
 
 2. <https://vercel.com> 로그인 → **Add New → Project** → GitHub 저장소 선택
 3. 설정은 **그대로 두고** (Framework Preset: `Other`, Build Command 비움, Output Directory 비움)
-4. **Environment Variables** 에 `OPENAI_API_KEY` 추가 → **Deploy**
+4. **Environment Variables** 에 `GEMINI_API_KEY` 추가 → **Deploy**
 5. 배포가 끝나면 `https://<프로젝트명>.vercel.app` 접속
+
+> 배포 후에 환경 변수를 추가했다면 **Deployments → 최신 배포 → Redeploy** 를 눌러야 반영됩니다.
+> 환경 변수는 배포가 만들어지는 시점에 묶이기 때문입니다.
+
 ---
 
 ## 9. AI 기능 설계
@@ -236,10 +250,12 @@ Content-Type: application/json
     ],
     "checklist": ["슬라이드 파일 저장하기", "..."],
     "caution": "새 자료를 찾기보다 있는 내용을 정리하세요.",
-    "provider": "openai",
-    "model": "gpt-4o-mini"
+    "provider": "gemini",
+    "model": "gemini-2.5-flash"
   }
 }
+```
+
 ---
 
 ## 10. 오류 처리 정책
